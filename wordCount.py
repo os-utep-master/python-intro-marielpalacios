@@ -8,6 +8,8 @@ import sys
 import os
 import subprocess
 
+wordList = list()
+
 def readFile():
     # set input and output files
     if len(sys.argv) is not 3:
@@ -18,7 +20,7 @@ def readFile():
     outputFname = sys.argv[2]
 
     #create list where words will be saved to
-    wordList = list()
+
 
     # attempt to open input file
     with open(inputFname, 'r') as inputFile:
@@ -34,6 +36,7 @@ def readFile():
 
             #split the current line using the whitespace and save  it to temp list wordsInLine
             print("split: ")
+            #remove punctuation 
             word = re.sub(r'[^\w\s]', '', line)
             word = re.sub(r'\_', '', word)
             word = re.split('[ \t]', word)
@@ -57,9 +60,21 @@ def readFile():
 
     outputFname.close()
 
+    return wordList
+
     #open and read the file after the appending:
     output = open("output.txt", "r")
     print("\n" + "output: " + "\n")
     print(output.read())
 
+
+
+def countWords():
+    for words in wordList:
+        currentWordCount = wordList.count(words)
+        print(words)
+        print("word count: ")
+        print(currentWordCount)
+
 readFile()
+countWords()
