@@ -8,6 +8,7 @@ import sys
 import os
 import subprocess
 
+#create list where words will be saved to
 wordList = list()
 
 def readFile():
@@ -18,9 +19,6 @@ def readFile():
 
     inputFname = sys.argv[1]
     outputFname = sys.argv[2]
-
-    #create list where words will be saved to
-
 
     # attempt to open input file
     with open(inputFname, 'r') as inputFile:
@@ -53,9 +51,6 @@ def readFile():
     return wordList
       
 
-
-
-
 def countWords():
     #write the output to output file
     outputFname = open("output.txt", "w")
@@ -66,18 +61,17 @@ def countWords():
 
     for word in wordList:
         if word not in newWords:
-            newWords.append(word)
-            currentWordCount = wordList.count(word)
-            outputFname.write(word + " " + str(currentWordCount) + "\n")
+            if word != "":
+                newWords.append(word)
+                currentWordCount = wordList.count(word)
+                outputFname.write(word + " " + str(currentWordCount) + "\n")
         # print(word)
         # print("word count: ")
         # print(currentWordCount)
-    outputFname.close()
-
+        
     #open and read the file after the appending:
-    output = open("output.txt", "r")
-    print("\n" + "output: " + "\n")
-    print(output.read())
+    print(outputFname.read())
+    outputFname.close()
 
 readFile()
 countWords()
