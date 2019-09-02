@@ -28,38 +28,38 @@ def readFile():
             #print("line: " + line)
             line = line.strip()
 
-
             #print(len(line))
             print("current line: " + line)
             # #print("stripped: " + line.strip())
 
             #split the current line using the whitespace and save  it to temp list wordsInLine
             print("split: ")
-            word = re.split('[ \t]', line)
+            word = re.sub(r'[^\w\s]', '', line)
+            word = re.sub(r'\_', '', word)
+            word = re.split('[ \t]', word)
+
             print(word)
 
             for currentWord in word:
-                wordList.append(currentWord)
+                wordList.append(currentWord.lower())
 
             #debug
             print("wordList: ")
             print(wordList)
 
       
-
-
-
    #write the output to output file
     outputFname = open("output.txt", "w")
 
+    wordList.sort()
     for words in wordList:
-        outputFname.write(words)
+        outputFname.write(words + "\n")
 
     outputFname.close()
 
     #open and read the file after the appending:
     output = open("output.txt", "r")
+    print("\n" + "output: " + "\n")
     print(output.read())
-
 
 readFile()
