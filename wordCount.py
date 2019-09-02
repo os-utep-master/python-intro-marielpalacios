@@ -8,38 +8,58 @@ import sys
 import os
 import subprocess
 
-# set input and output files
-if len(sys.argv) is not 3:
-    print("Correct usage: wordCount.py <input text file> <output file> " )
-    exit()
+def readFile():
+    # set input and output files
+    if len(sys.argv) is not 3:
+        print("Correct usage: wordCount.py <input text file> <output file> " )
+        exit()
 
-inputFname = sys.argv[1]
-outputFname = sys.argv[2]
-#inputFname = sys.argv[3]
+    inputFname = sys.argv[1]
+    outputFname = sys.argv[2]
 
-wordList = list()
+    #create list where words will be saved to
+    wordList = list()
 
-# attempt to open input file
-with open(inputFname, 'r') as inputFile:
-    for line in inputFile:
-        # get rid of newline characters
-        line = line.strip()
-
-
-#line = "   a this is an example of a line. yes no.             ."
-        print(len(line))
-        print("line: " + line)
+    # attempt to open input file
+    with open(inputFname, 'r') as inputFile:
+        for line in inputFile:
+            # get rid of newline characters
+            #debug
+            #print("line: " + line)
+            line = line.strip()
 
 
-        print("stripped: " + line.strip())
+            #print(len(line))
+            print("current line: " + line)
+            # #print("stripped: " + line.strip())
 
-        print("split: ")
-        wordsInLine = re.split('[ \t]', line)
+            #split the current line using the whitespace and save  it to temp list wordsInLine
+            print("split: ")
+            word = re.split('[ \t]', line)
+            print(word)
 
-        print("wordsInLine:")
-        print(wordsInLine)
+            for currentWord in word:
+                wordList.append(currentWord)
 
-        wordList.append(wordsInLine)
-        
-        print("wordList: ")
-        print(wordList)
+            #debug
+            print("wordList: ")
+            print(wordList)
+
+      
+
+
+
+   #write the output to output file
+    outputFname = open("output.txt", "w")
+
+    for words in wordList:
+        outputFname.write(words)
+
+    outputFname.close()
+
+    #open and read the file after the appending:
+    output = open("output.txt", "r")
+    print(output.read())
+
+
+readFile()
