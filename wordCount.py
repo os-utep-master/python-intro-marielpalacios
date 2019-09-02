@@ -49,32 +49,35 @@ def readFile():
             #debug
             print("wordList: ")
             print(wordList)
-
-      
-   #write the output to output file
-    outputFname = open("output.txt", "w")
-
-    wordList.sort()
-    for words in wordList:
-        outputFname.write(words + "\n")
-
-    outputFname.close()
-
+    
     return wordList
+      
+
+
+
+
+def countWords():
+    #write the output to output file
+    outputFname = open("output.txt", "w")
+    wordList.sort()
+
+    #make a new list to check for repeated words
+    newWords = list()
+
+    for word in wordList:
+        if word not in newWords:
+            newWords.append(word)
+            currentWordCount = wordList.count(word)
+            outputFname.write(word + " " + str(currentWordCount) + "\n")
+        # print(word)
+        # print("word count: ")
+        # print(currentWordCount)
+    outputFname.close()
 
     #open and read the file after the appending:
     output = open("output.txt", "r")
     print("\n" + "output: " + "\n")
     print(output.read())
-
-
-
-def countWords():
-    for words in wordList:
-        currentWordCount = wordList.count(words)
-        print(words)
-        print("word count: ")
-        print(currentWordCount)
 
 readFile()
 countWords()
