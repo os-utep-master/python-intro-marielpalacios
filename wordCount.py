@@ -29,24 +29,24 @@ def readFile():
             line = line.strip()
 
             #print(len(line))
-            print("current line: " + line)
+           # print("current line: " + line)
             # #print("stripped: " + line.strip())
 
             #split the current line using the whitespace and save  it to temp list wordsInLine
-            print("split: ")
+            #print("split: ")
             #remove punctuation 
             word = re.sub(r'[^\w\s]', '', line)
             word = re.sub(r'\_', '', word)
             word = re.split('[ \t]', word)
 
-            print(word)
+            #print(word)
 
             for currentWord in word:
                 wordList.append(currentWord.lower())
 
             #debug
-            print("wordList: ")
-            print(wordList)
+            #print("wordList: ")
+            #print(wordList)
     
     return wordList
       
@@ -68,9 +68,9 @@ def countWords():
         # print(word)
         # print("word count: ")
         # print(currentWordCount)
-        
+
     #open and read the file after the appending:
-    print(outputFname.read())
+    #print(outputFname.read())
     outputFname.close()
 
 readFile()
