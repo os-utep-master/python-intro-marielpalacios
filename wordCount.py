@@ -37,9 +37,10 @@ def readFile():
             #remove whitespace from the line
             line = line.strip()
             #break line into words at the whitespace
-            word = re.split('[ \t]', line)            
-
-            for currentWord in word:
+            words = re.split('[ \t]', line)            
+            
+            #add the current word into list of words
+            for currentWord in words:
                 wordList.append(currentWord.lower())
 
     return wordList
@@ -59,13 +60,11 @@ def countWords():
                 newWords.append(word)
                 currentWordCount = wordList.count(word)
                 outputFname.write(word + " " + str(currentWordCount) + "\n")
-        # print(word)
-        # print("word count: ")
-        # print(currentWordCount)
 
     #open and read the file after the appending:
     #print(outputFname.read())
     outputFname.close()
 
+#call the functions
 readFile()
 countWords()
