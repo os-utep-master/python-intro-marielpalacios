@@ -23,31 +23,25 @@ def readFile():
     # attempt to open input file
     with open(inputFname, 'r') as inputFile:
         for line in inputFile:
-            # get rid of newline characters
-            #debug
-            #print("line: " + line)
-            line = line.strip()
 
-            #print(len(line))
-           # print("current line: " + line)
-            # #print("stripped: " + line.strip())
-
-            #split the current line using the whitespace and save  it to temp list wordsInLine
-            #print("split: ")
             #remove punctuation 
-            word = re.sub(r'[^\w\s]', '', line)
-            word = re.sub(r'\_', '', word)
-            word = re.split('[ \t]', word)
-
-            #print(word)
+            line = line.replace(".", " ")
+            line = line.replace("!", " ")
+            line = line.replace("?", " ")
+            line = line.replace(";", " ")
+            line = line.replace(":", " ")
+            line = line.replace(",", " ")
+            line = line.replace('"', " ")
+            line = line.replace("'", " ")
+            line = line.replace("-", " ")       
+            #remove whitespace from the line
+            line = line.strip()
+            #break line into words at the whitespace
+            word = re.split('[ \t]', line)            
 
             for currentWord in word:
                 wordList.append(currentWord.lower())
 
-            #debug
-            #print("wordList: ")
-            #print(wordList)
-    
     return wordList
       
 
